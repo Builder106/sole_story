@@ -1,41 +1,20 @@
-import React from 'react'
 import { useRoutes } from 'react-router-dom'
-import Navigation from './components/Navigation'
-import ViewCars from './pages/ViewCars'
-import EditCar from './pages/EditCar'
-import CreateCar from './pages/CreateCar'
-import CarDetails from './pages/CarDetails'
-import './App.css'
+import Shell from './components/Shell'
+import Designer from './pages/Designer'
+import Gallery from './pages/Gallery'
+import Detail from './pages/Detail'
+import Edit from './pages/Edit'
 
-const App = () => {
-  let element = useRoutes([
-    {
-      path: '/',
-      element: <CreateCar title='BOLT BUCKET | Customize' />
-    },
-    {
-      path:'/customcars',
-      element: <ViewCars title='BOLT BUCKET | Custom Cars' />
-    },
-    {
-      path: '/customcars/:id',
-      element: <CarDetails title='BOLT BUCKET | View' />
-    },
-    {
-      path: '/edit/:id',
-      element: <EditCar title='BOLT BUCKET | Edit' />
-    }
-  ])
-
-  return (
-    <div className='app'>
-
-      <Navigation />
-
-      { element }
-
-    </div>
-  )
+export default function App() {
+    const tree = useRoutes([
+        { path: '/', element: <Designer /> },
+        { path: '/designs', element: <Gallery /> },
+        { path: '/designs/:id', element: <Detail /> },
+        { path: '/edit/:id', element: <Edit /> }
+    ])
+    return (
+        <Shell>
+            {tree}
+        </Shell>
+    )
 }
-
-export default App
